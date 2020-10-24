@@ -19,7 +19,7 @@ class Transmitter:
 
     @staticmethod
     def get_documentation(full_route):
-        with open(full_route) as source:
+        with open(full_route, encoding='utf-8') as source:
             content = ''.join(source.readlines())
         documentation_pieces = content.split('/**')
         documentation = {}
@@ -51,7 +51,8 @@ class Transmitter:
     @staticmethod
     def create_html_file(output_folder, file, documentation):
         with open('{}/{}.html'.format(output_folder,
-                                      file[:-5]), 'w') as html_page:
+                                      file[:-5]), 'w',
+                  encoding='utf-8') as html_page:
             html_page.write('<!DOCTYPE html>\n'
                             '<html lang="en">\n'
                             '   <head>\n'
