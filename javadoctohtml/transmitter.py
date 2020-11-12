@@ -1,9 +1,12 @@
+from argparse import Namespace
 from javadoctohtml import DocumentationItem
+from pathlib import Path
+from typing import List
 import os
 
 
 class Transmitter:
-    def run(self, arguments):
+    def run(self, arguments: Namespace) -> None:
         for file in arguments.files:
             full_route = '{0}/{1}'.format(arguments.directory, file)
             if not os.path.exists(full_route):
@@ -18,40 +21,43 @@ class Transmitter:
             self.create_output(file, arguments, documentation)
 
     @staticmethod
-    def get_documentation(full_route):
-        with open(full_route, encoding='utf-8') as source:
+    def get_documentation(full_route: str) -> List[DocumentationItem]:
+        with open(Path(full_route), encoding='utf-8') as source:
             content = ''.join(source.readlines())
         documentation_pieces = content.split('/**')
         documentation = {}
-        for piece in documentation_pieces[1:]:
-            item = piece[piece.find('*/') + 2:].split('\n')
+        for doc_piece in documentation_pieces[1:]:
+            item = doc_piece[doc_piece.find('*/') + 2:].split('\n')
             current_line = item[0]
-            i = 0
+            index = 0
             while current_line == '':
-                i += 1
-                current_line = item[i]
-            documentation[current_line.strip()] = piece[:piece.find('*/')]
+                index += 1
+                current_line = item[index]
+            documentation[current_line.strip()] =\
+                doc_piece[:doc_piece.find('*/')]
         doc_items = []
         for key in documentation.keys():
             doc_items.append(DocumentationItem(key, documentation[key]))
         return doc_items
 
-    def create_output(self, file, arguments, documentation):
+    def create_output(self, file: str, arguments: Namespace,
+                      documentation: List[DocumentationItem]) -> None:
         output_folder = '{}/output'.format(arguments.target)
         if not os.path.exists(output_folder):
             os.mkdir(output_folder)
         levels = file.split('/')
-        for i in range(1, len(levels)):
+        for index in range(1, len(levels)):
             current_level = '{}/{}'.format(output_folder,
-                                           '/'.join(levels[:i]))
+                                           '/'.join(levels[:index]))
             if not os.path.exists(current_level):
                 os.mkdir(current_level)
         self.create_html_file(output_folder, file, documentation)
 
     @staticmethod
-    def create_html_file(output_folder, file, documentation):
-        with open('{}/{}.html'.format(output_folder,
-                                      file[:-5]), 'w',
+    def create_html_file(output_folder: str, file: str,
+                         documentation: List[DocumentationItem]) -> None:
+        with open(Path('{}/{}.html').format(output_folder,
+                                            file[:-5]), 'w',
                   encoding='utf-8') as html_page:
             html_page.write('<!DOCTYPE html>\n'
                             '<html lang="en">\n'

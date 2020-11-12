@@ -1,5 +1,5 @@
 class DocumentationItem:
-    def __init__(self, item: str, doc_string: str):
+    def __init__(self, item: str, doc_string: str) -> None:
         if item.find('class') != -1:
             self.type = 'class'
             self.name = item[:item.find('{')].strip().split(' ')[-1]
@@ -39,7 +39,7 @@ class DocumentationItem:
             returning = doc_string[doc_string.find('@return'):]
             self.returning = returning[:returning.find('\n')].strip()
 
-    def find_all_exceptions(self, doc_string, separator):
+    def find_all_exceptions(self, doc_string: str, separator: str) -> None:
         exceptions = doc_string.split('* {}'.format(separator))
         for exception in exceptions[1:]:
             exception_content = exception.strip().split(' ')

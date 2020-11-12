@@ -1,10 +1,10 @@
 #!usr/bin/env python3
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 from javadoctohtml import Transmitter
 import os
 
 
-def parse_args():
+def parse_args() -> Namespace:
     parser = ArgumentParser(description='JavaDoc2HTMLTransmission')
     parser.add_argument("-directory", metavar='d', default=os.getcwd(),
                         help='Working directory')
