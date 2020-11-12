@@ -1,4 +1,4 @@
-from domain import DocumentationItem
+from javadoctohtml import DocumentationItem
 import os
 
 

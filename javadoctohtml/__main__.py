@@ -1,5 +1,6 @@
+#!usr/bin/env python3
 from argparse import ArgumentParser
-from domain import Transmitter
+from javadoctohtml import Transmitter
 import os
 
 
