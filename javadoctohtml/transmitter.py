@@ -8,7 +8,7 @@ import os
 class Transmitter:
     def run(self, arguments: Namespace) -> None:
         for file in arguments.files:
-            full_route = '{0}/{1}'.format(arguments.directory, file)
+            full_route = '{}/{}'.format(arguments.directory, file)
             if not os.path.exists(full_route):
                 print('{} was ignored because it does not exist'
                       .format(full_route))
@@ -56,8 +56,7 @@ class Transmitter:
     @staticmethod
     def create_html_file(output_folder: str, file: str,
                          documentation: List[DocumentationItem]) -> None:
-        with open(Path('{}/{}.html').format(output_folder,
-                                            file[:-5]), 'w',
+        with open(Path('{}/{}.html'.format(output_folder, file[:-5])), 'w',
                   encoding='utf-8') as html_page:
             html_page.write('<!DOCTYPE html>\n'
                             '<html lang="en">\n'
