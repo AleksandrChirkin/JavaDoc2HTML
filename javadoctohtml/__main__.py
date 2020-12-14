@@ -1,18 +1,22 @@
-#!usr/bin/env python3
-from argparse import ArgumentParser, Namespace
-from javadoctohtml import Transmitter
+from argparse import ArgumentParser
+from pathlib import Path
+from typing import Any, Dict
 import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             os.path.pardir))
+from javadoctohtml import Transmitter  # noqa
 
 
-def parse_args() -> Namespace:
+def parse_args() -> Dict[str, Any]:
     parser = ArgumentParser(description='JavaDoc2HTMLTransmission')
-    parser.add_argument("-directory", metavar='d', default=os.getcwd(),
+    parser.add_argument("-directory", metavar='d', default=Path.cwd(),
                         help='Working directory')
-    parser.add_argument("-target", default=os.getcwd(), metavar='t',
+    parser.add_argument("-target", default=Path.cwd(), metavar='t',
                         help='Place where HTML documentation will be stored')
     parser.add_argument("files", nargs="+", help='Java files')
-    return parser.parse_args()
+    return parser.parse_args().__dict__
 
 
 if __name__ == '__main__':
-    Transmitter().run(parse_args())
+    Transmitter(parse_args()).run()

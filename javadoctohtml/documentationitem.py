@@ -1,11 +1,18 @@
+from typing import List
+
+
 class DocumentationItem:
     def __init__(self, item: str, doc_string: str) -> None:
         if item.find('class') != -1:
             self.type = 'class'
-            self.name = item[:item.find('{')].strip().split(' ')[-1]
+            item_fragments = item[:item.find('{')].strip().split(' ')
+            last_index = self.get_extends_or_implements_index(item_fragments)
+            self.name = item_fragments[last_index - 1]
         elif item.find('interface') != -1:
             self.type = 'interface'
-            self.name = item[:item.find('{')].strip().split(' ')[-1]
+            item_fragments = item[:item.find('{')].strip().split(' ')
+            last_index = self.get_extends_or_implements_index(item_fragments)
+            self.name = item_fragments[last_index - 1]
         elif item.find('(') != -1:
             self.type = 'method'
             self.name = item[:item.find('(')].strip().split(' ')[-1]
@@ -40,8 +47,18 @@ class DocumentationItem:
             self.returning = returning[:returning.find('\n')].strip()
 
     def find_all_exceptions(self, doc_string: str, separator: str) -> None:
-        exceptions = doc_string.split('* {}'.format(separator))
+        exceptions = doc_string.split(f'* {separator}')
         for exception in exceptions[1:]:
             exception_content = exception.strip().split(' ')
             self.exceptions[exception_content[0]] = ' ' \
                 .join(exception_content[2:])
+
+    @staticmethod
+    def get_extends_or_implements_index(fragments: List[str]) -> int:
+        try:
+            return fragments.index('extends')
+        except ValueError:
+            try:
+                return fragments.index('implements')
+            except ValueError:
+                return 0
