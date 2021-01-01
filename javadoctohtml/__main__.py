@@ -1,11 +1,14 @@
 from argparse import ArgumentParser
 from pathlib import Path
 from typing import Any, Dict
+import logging
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                              os.path.pardir))
 from javadoctohtml import Transmitter  # noqa
+logging.basicConfig(format=u'%(message)s', level=logging.INFO,
+                    stream=sys.stdout)
 
 
 def parse_args() -> Dict[str, Any]:
