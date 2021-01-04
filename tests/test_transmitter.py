@@ -4,7 +4,7 @@ import sys
 import unittest
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                              os.path.pardir))
-from javadoctohtml import Transmitter # noqa
+from javadoctohtml import Transmitter  # noqa
 
 
 class DocumentationTest(unittest.TestCase):
