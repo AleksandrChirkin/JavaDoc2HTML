@@ -1,23 +1,26 @@
 # Перевод документации из JavaDoc в HTML
 Автор: Чиркин Александр (группа КБ-201)(chirkin2001@list.ru)
 
-## Описание
-Данное приложение позволяет извлекать из java-файлов документацию и преобразовывать ее в HTML-формат
+## Установка
+```
+git clone https://github.com/AleksandrChirkin/javadoc2html
+pip3 install -r requirements.txt
+```
 
-## Требования
-* Python версии не ниже 3.7
+## Получить справку
+```
+python3 -m javadoc2html -h
+```
 
-## Состав
-* Точка входа: 'main.py'
-* Папка с исполняемыми файлами 'domain'; documentationitem предоставляет хранилище для каждого фрагмента документации; transmitter - непосредственно осуществляет перевод документации
-* Папка 'samples' содержит примеры java-файлов, на которых можно проверить алгоритм. Взяты из реального проекта, разработанного в рамках курса ООП.
-* Папка 'tests' содержит тесты на алгоритмы
+## API
 
-## Запуск
-python3 main.py [-h] [-directory d] [-target t] files [files ...]
+Приложение выполняет функции утилиты javadoc2html.
 
-## Подробности реализации
-При введении клча '-h' или '--help' выводится справка по соответствующему алгоритму.
-Ключи:
--directory - директория с исходными java-файлами
--target - директория, куда будут помещены итоговые HTML-файлы
+## Пример:
+```
+python3 -m javadoc2html tests\java
+python -m javadoc2html tests\java\TestInterface.java tests\java\TestClass.java
+```
+
+# Автор
+*Name-users (name.users@mail.ru)* 

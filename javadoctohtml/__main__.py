@@ -1,10 +1,13 @@
 from argparse import ArgumentParser, Namespace
 from typing import List
 import logging
+import os
 import re
 import sys
 logging.basicConfig(format=u'%(message)s', level=logging.INFO,
                     stream=sys.stdout)
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             os.path.pardir))
 from javadoctohtml import JavaFileParser, JavaFile, ConvertHtml, FileManager,\
     errors  # noqa
 
