@@ -1,7 +1,5 @@
 from tests import TestManager
 from typing import List, Dict
-import os
-import sys
 import unittest
 from javadoctohtml import JavaFileParser, \
     JavaField, JavaTemplate, JavaMethod, JavaComment, JavaFile  # noqa
