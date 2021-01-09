@@ -3,23 +3,23 @@
 
 ## Установка
 ```
-git clone https://github.com/AleksandrChirkin/javadoc2html
+git clone https://github.com/AleksandrChirkin/javadoctohtml
 pip3 install -r requirements.txt
 ```
 
 ## Получить справку
 ```
-python3 -m javadoc2html -h
+python3 -m javadoctohtml -h
 ```
 
 ## API
 
-Приложение выполняет функции утилиты javadoc2html.
+Приложение выполняет функции утилиты javadoctohtml.
 
 ## Пример:
 ```
-python3 -m javadoc2html tests\java
-python -m javadoc2html tests\java\TestInterface.java tests\java\TestClass.java
+python3 -m javadoctohtml tests\java
+python -m javadoctohtml tests\java\TestInterface.java tests\java\TestClass.java
 ```
 
 # Автор
