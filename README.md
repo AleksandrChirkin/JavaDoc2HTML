@@ -3,7 +3,7 @@
 
 ## Установка
 ```
-git clone https://github.com/AleksandrChirkin/javadoctohtml
+git clone https://github.com/AleksandrChirkin/JavaDoc2HTML_Chirkin
 pip3 install -r requirements.txt
 ```
 
@@ -18,8 +18,8 @@ python3 -m javadoctohtml -h
 
 ## Пример:
 ```
-python3 -m javadoctohtml tests\java
-python -m javadoctohtml tests\java\TestInterface.java tests\java\TestClass.java
+python3 -m javadoctohtml tests/java
+python -m javadoctohtml tests/java/TestInterface.java tests/java/TestClass.java
 ```
 
 # Автор
