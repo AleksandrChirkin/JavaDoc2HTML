@@ -21,6 +21,3 @@ python3 -m javadoctohtml -h
 python3 -m javadoctohtml tests/java
 python -m javadoctohtml tests/java/TestInterface.java tests/java/TestClass.java
 ```
-
-# Автор
-*Name-users (name.users@mail.ru)* 
